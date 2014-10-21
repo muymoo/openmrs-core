@@ -29,6 +29,7 @@ import org.openmrs.Steps;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.lift.find.Finder;
+import static org.junit.Assert.*;
 
 public class LoginSteps extends Steps {
 
@@ -77,7 +78,8 @@ public class LoginSteps extends Steps {
 
 	@Then("take me to the $title screen and display welcome message for user $user")
 	public void verifyPage(String title, String displayName) {
-		assertPresenceOf(title().with(text(equalTo("OpenMRS - " + title))));
+		assertEquals(getTitle(), "OpenMRS - " + title);
+		//assertPresenceOf(title().with(text(equalTo("OpenMRS - " + title))));
 		assertPresenceOf(div().with(
 				text(containsString("Hello, " + displayName + ". Welcome to"))));
 	}
