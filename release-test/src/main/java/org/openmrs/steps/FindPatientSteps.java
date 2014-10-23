@@ -21,6 +21,8 @@ import org.openmrs.Steps;
 import org.openqa.selenium.WebDriver;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.contains;
+import static org.openqa.selenium.lift.Finders.div;
 import static org.openqa.selenium.lift.Finders.link;
 import static org.openqa.selenium.lift.Finders.title;
 import static org.openqa.selenium.lift.Matchers.text;
@@ -34,7 +36,6 @@ public class FindPatientSteps extends Steps {
     @Given("I am on $title screen")
     public void onHomePage(String title) {
         assertEquals(getTitle(), "OpenMRS - " + title);
-        //assertPresenceOf(title().with(text(equalTo("OpenMRS - " + title))));
     }
 
     @When("I click on the $createPatient link")
@@ -45,8 +46,8 @@ public class FindPatientSteps extends Steps {
 
     @Then("take me to Find/Create Patient Page with $createPatientTitle as title")
     public void verifyCreatePatientPage(String createPatientTitle) {
+        waitAndAssertFor(link().with(text(equalTo("Home"))));
         assertEquals("OpenMRS - " + createPatientTitle, getTitle());
-        //assertPresenceOf(title().with(text(equalTo("OpenMRS - " + createPatientTitle))));
     }
 
 }
