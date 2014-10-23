@@ -22,6 +22,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.openqa.selenium.lift.Finders.title;
 import static org.openqa.selenium.lift.Matchers.text;
 
+import static org.junit.Assert.*;
+
 public class AdminSteps extends Steps {
 
 	public AdminSteps(WebDriver driver) {
@@ -30,13 +32,15 @@ public class AdminSteps extends Steps {
 
 	@Given("I am on $title screen")
 	public void onHomePage(String title) {
-		assertPresenceOf(title().with(text(equalTo("OpenMRS - " + title))));
+		assertEquals(getTitle(), "OpenMRS - " + title);
+		//assertPresenceOf(title().with(text(equalTo("OpenMRS - " + title))));
 	}
 
 	@Then("take me to $title page")
 	public void verifyAdminPage(String title) throws InterruptedException {
         Thread.sleep(5000);
-        assertPresenceOf(title().with(text(equalTo("OpenMRS - " + title))));
+        assertEquals(getTitle(), "OpenMRS - " + title);
+        //assertPresenceOf(title().with(text(equalTo("OpenMRS - " + title))));
 	}
 
 }
