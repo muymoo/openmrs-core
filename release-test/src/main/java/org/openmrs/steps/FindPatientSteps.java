@@ -45,7 +45,7 @@ public class FindPatientSteps extends Steps {
 
     @Then("take me to Find/Create Patient Page with $createPatientTitle as title")
     public void verifyCreatePatientPage(String createPatientTitle) {
-        assertEquals(getTitle(), "OpenMRS - " + createPatientTitle);
+        assertEquals("OpenMRS - " + createPatientTitle, getTitle());
         //assertPresenceOf(title().with(text(equalTo("OpenMRS - " + createPatientTitle))));
     }
 

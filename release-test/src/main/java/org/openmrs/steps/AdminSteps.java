@@ -32,14 +32,14 @@ public class AdminSteps extends Steps {
 
 	@Given("I am on $title screen")
 	public void onHomePage(String title) {
-		assertEquals(getTitle(), "OpenMRS - " + title);
+		assertEquals("OpenMRS - " + title, getTitle());
 		//assertPresenceOf(title().with(text(equalTo("OpenMRS - " + title))));
 	}
 
 	@Then("take me to $title page")
 	public void verifyAdminPage(String title) throws InterruptedException {
         Thread.sleep(5000);
-        assertEquals(getTitle(), "OpenMRS - " + title);
+        assertEquals(title, getTitle());
         //assertPresenceOf(title().with(text(equalTo("OpenMRS - " + title))));
 	}
 
