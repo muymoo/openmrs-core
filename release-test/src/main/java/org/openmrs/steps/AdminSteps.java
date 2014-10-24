@@ -29,6 +29,11 @@ public class AdminSteps extends Steps {
 	public AdminSteps(WebDriver driver) {
 		super(driver);
 	}
+	
+	@Given("I am on $title page")
+	public void onAdminPage(String title) {
+		assertEquals(title, getTitle());
+	}
 
 	@Given("I am on $title screen")
 	public void onHomePage(String title) {
