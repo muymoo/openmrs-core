@@ -25,6 +25,8 @@ import static org.openqa.selenium.lift.Finders.*;
 import static org.openqa.selenium.lift.Matchers.text;
 import static org.openqa.selenium.lift.match.AttributeMatcher.attribute;
 
+import static org.junit.Assert.*;
+
 public class ChangeRolePrivilegesSteps extends Steps {
 	
 	public ChangeRolePrivilegesSteps(WebDriver driver) {
@@ -33,7 +35,8 @@ public class ChangeRolePrivilegesSteps extends Steps {
 	
 	@Given("I am viewing the list of roles")
 	public void listRoles() {
-		assertPresenceOf(title().with(text(equalTo("OpenMRS - Role Management"))));
+		//assertPresenceOf(title().with(text(equalTo("OpenMRS - Role Management"))));
+		assertEquals("Role Management", getTitle());
 	}
 	
 	@When("I edit a role with the name $role")

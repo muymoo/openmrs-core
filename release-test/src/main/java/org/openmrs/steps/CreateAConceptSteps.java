@@ -21,6 +21,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.lift.Finders;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.lift.Finders.*;
 import static org.openqa.selenium.lift.Matchers.attribute;
 import static org.openqa.selenium.lift.Matchers.text;
@@ -33,12 +34,12 @@ public class CreateAConceptSteps extends Steps {
 	
 	@Given("I am on $title screen")
 	public void onHomePage(String title) {
-		assertPresenceOf(title().with(text(equalTo("OpenMRS - " + title))));
+		assertEquals("OpenMRS - Home", getTitle());
 	}
 	
 	@Then("Take me to the $dictionary page")
 	public void takeMeToDictionaryPage(String dictionary) {
-		assertPresenceOf(title().with(text(equalTo("OpenMRS - " + dictionary))));
+		assertEquals("Concept Dictionary Maintenance", getTitle());
 	}
 	
 	@When("I choose to add new concept")
@@ -48,7 +49,7 @@ public class CreateAConceptSteps extends Steps {
 	
 	@Then("Take me to the $creatingNewConcept form")
 	public void takeMeToCreateNewConceptPage(String title) {
-		assertPresenceOf(title().with(text(equalTo("OpenMRS - " + title))));
+		assertEquals("OpenMRS - Creating New Concept", getTitle());
 	}
 	
 	@When("I enter $test as a fully specified name")

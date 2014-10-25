@@ -20,6 +20,7 @@ import org.openmrs.Steps;
 import org.openqa.selenium.WebDriver;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.lift.Finders.*;
 import static org.openqa.selenium.lift.Matchers.attribute;
 import static org.openqa.selenium.lift.Matchers.text;
@@ -32,7 +33,7 @@ public class DeleteRoleSteps extends Steps {
 
 	@Given("I am viewing the list of roles")
 	public void listRoles() {
-		assertPresenceOf(title().with(text(equalTo("OpenMRS - Role Management"))));
+		assertEquals("Role Management", getTitle());
 	}
 
 	@When("I delete a role with the name $role")

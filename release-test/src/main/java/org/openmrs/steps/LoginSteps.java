@@ -63,7 +63,7 @@ public class LoginSteps extends Steps {
 		String username = System.getProperty(usernameProp, "admin");
 		String password = System.getProperty(passwordProp, "Admin123");
 
-		// (same as above resoning)
+		// (same as above reasoning)
 		// this check is just in case a scenario has two dependencies and both of them 
 		// depend on the login_to_website story
 		if (! userAlreadyLoggedIn()) {
