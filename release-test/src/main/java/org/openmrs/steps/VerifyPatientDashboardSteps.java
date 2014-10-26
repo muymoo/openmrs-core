@@ -26,6 +26,8 @@ import static org.openqa.selenium.lift.Finders.*;
 import static org.openqa.selenium.lift.Matchers.text;
 import static org.openqa.selenium.lift.match.AttributeMatcher.attribute;
 
+import static org.junit.Assert.*;
+
 public class VerifyPatientDashboardSteps extends Steps {
 
 	public VerifyPatientDashboardSteps(WebDriver driver) {
@@ -34,7 +36,7 @@ public class VerifyPatientDashboardSteps extends Steps {
 	
 	@Given("I am on Find/Create Patient Page with $title as title")
 	public void iAmOnFindCreatePatientPage(String title){
-		assertPresenceOf(title().with(text(equalTo("OpenMRS - " +title))));
+		assertEquals("OpenMRS - " +title, getTitle());
 	}
 	
 	@When ("I search for a  patient $name")
@@ -54,13 +56,14 @@ public class VerifyPatientDashboardSteps extends Steps {
 	
 	@Then("the dashboard header should contain name, age, bmi, CD4, regimens, last encounter, Old identification number and OpenMRS identification number")
 	public void verifyPatientDashBoard(){
-    	assertPresenceOf(div().with(attribute("id",equalTo("patientHeaderPatientName"))).with(text(equalTo("Mr. Horatio L Hornblower Esq."))));
-		assertPresenceOf(cell().with(attribute("id",equalTo("patientHeaderPatientAge"))).with(text(containsString("71 yrs"))));
+		waitFor(div().with(attribute("id",equalTo("patientHeaderPatientName"))));
+    	assertPresenceOf(div().with(attribute("id",equalTo("patientHeaderPatientName"))).with(text(equalTo("Mr. Horatio L Hornblower"))));
+		assertPresenceOf(cell().with(attribute("id",equalTo("patientHeaderPatientAge"))).with(text(containsString("73 yrs"))));
 		assertPresenceOf(table().with(attribute("id",equalTo("patientHeaderObs"))));
 		assertPresenceOf(cell().with(attribute("class",equalTo("patientRecentObsConfigured"))));
 		assertPresenceOf(cell().with(attribute("id", equalTo("patientHeaderObsRegimen"))));
 		assertPresenceOf(div().with(attribute("id",equalTo("patientHeaderPreferredIdentifier"))).with(text(containsString("101-6"))));
 		assertPresenceOf(cell().with(attribute("id", equalTo("patientHeaderOtherIdentifiers"))).with(text(containsString("Old Identification Number: 101"))));
-		assertPresenceOf(title().with(text(equalTo("OpenMRS - Patient Dashboard"))));
+		assertEquals("OpenMRS - Patient Dashboard", getTitle());
 	}
 }

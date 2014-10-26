@@ -26,6 +26,8 @@ import org.jbehave.core.annotations.When;
 import org.openmrs.Steps;
 import org.openqa.selenium.WebDriver;
 
+import static org.junit.Assert.*;
+
 public class ViewServerLogSteps extends Steps {
 	public ViewServerLogSteps(WebDriver driver) {
 		super(driver);
@@ -33,8 +35,9 @@ public class ViewServerLogSteps extends Steps {
 
 	@Given("I am on Admin page")
 	public void iAmOnAdminPage() {
-		assertPresenceOf(title().with(
-				text(equalTo("OpenMRS - " + "Administration"))));
+		assertEquals("Administration", getTitle());
+		//assertPresenceOf(title().with(
+		//		text(equalTo("OpenMRS - " + "Administration"))));
 	}
 
 	@When("I click on View Server Log")
@@ -44,6 +47,7 @@ public class ViewServerLogSteps extends Steps {
 
 	@Then("take me to Server Log")
 	public void verifyServerLog() {
+		waitFor(link().with(text(equalTo("Set Implementation Id"))));
 		assertPresenceOf(link().with(text(equalTo("Set Implementation Id"))));
 		assertPresenceOf(div().with(text(containsString("Server Log"))));
 	}
