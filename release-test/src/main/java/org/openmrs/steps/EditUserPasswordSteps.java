@@ -53,6 +53,7 @@ public class EditUserPasswordSteps extends Steps {
 
 	@When("I search for user $name")
 	public void searchUser(String name) {
+		waitFor(textbox().with(attribute("name", equalTo("name"))));
 		type(name, into(textbox().with(attribute("name", equalTo("name")))));
 		clickOn(button().with(attribute("name", equalTo("action"))));
 	}

@@ -33,7 +33,7 @@ public class EditPatientAttributesStep extends Steps {
 		super(driver);
 	}
 
-	@Given("I am on the manage patient page")
+	@When("I click on Manage Patients")
 	public void openManagePatient() {
 		clickOn(link().with(text(equalTo("Manage Patients"))));
 	}
