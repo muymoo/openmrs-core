@@ -26,6 +26,8 @@ import static org.openqa.selenium.lift.Finders.*;
 import static org.openqa.selenium.lift.Matchers.attribute;
 import static org.openqa.selenium.lift.Matchers.text;
 
+import static org.junit.Assert.*;
+
 public class CreatePatientSteps extends Steps {
 
 	public CreatePatientSteps(WebDriver driver) {
@@ -114,8 +116,7 @@ public class CreatePatientSteps extends Steps {
 
 	@Then("take me to Patient dashboard page with title Patient Dashboard")
 	public void verifyIfPatientIsCreated() {
-		assertPresenceOf(title().with(
-				text(equalTo("OpenMRS - " + "Patient Dashboard"))));
+		assertEquals("OpenMRS - Patient Dashboard", getTitle());
 	}
 
 }
