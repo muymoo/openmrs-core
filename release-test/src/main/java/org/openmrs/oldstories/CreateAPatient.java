@@ -11,7 +11,7 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.storiesv2;
+package org.openmrs.stories;
 
 import org.openmrs.Steps;
 import org.openmrs.Story;
