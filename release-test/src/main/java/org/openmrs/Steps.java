@@ -22,7 +22,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.lift.TestContext;
 import org.openqa.selenium.lift.find.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.*;
 
@@ -169,6 +171,16 @@ public abstract class Steps {
                 option.click();
             }
         }
+    }
+    
+    protected List<WebElement> getRowsOfResults(String selector) throws InterruptedException {
+        // wait for the results to update
+        Thread.sleep(2000);
+
+        WebElement openmrsSearchTable = driver.findElement(By.cssSelector(selector));
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement element = wait.until(ExpectedConditions.visibilityOf(openmrsSearchTable));
+        return openmrsSearchTable.findElements(By.tagName("tbody").tagName("tr"));
     }
 
     protected void waitAndAssertFor(Finder finder){

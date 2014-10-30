@@ -26,7 +26,7 @@ public class EditUserPassword extends Story {
 	
 	@Override
     public List<Steps> includeSteps() {
-        return asList(new LoginSteps(driver), new AdminSteps(driver),
+        return asList(new LoginPageSteps(driver), new AdminSteps(driver),
 				new CreateAUserSteps(driver), new LogoutSteps(driver), new EditUserPasswordSteps(driver));
     }
 }

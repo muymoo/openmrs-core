@@ -15,7 +15,7 @@ package org.openmrs.stories;
 
 import org.openmrs.Steps;
 import org.openmrs.Story;
-import org.openmrs.steps.LoginSteps;
+import org.openmrs.steps.LoginPageSteps;
 import org.openmrs.steps.RetireUnretireConceptDrugSteps;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class RetireUnretireConceptDrug extends Story {
 	
 	@Override
     public List<Steps> includeSteps() {
-        return asList(new LoginSteps(driver), 
+        return asList(new LoginPageSteps(driver), 
                 new RetireUnretireConceptDrugSteps(driver));
     }
 }

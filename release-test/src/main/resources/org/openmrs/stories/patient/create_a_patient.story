@@ -1,17 +1,6 @@
 Scenario: Create a patient
 
-GivenStories: org/openmrs/stories/login_to_website.story
-
-Given I am on Home screen
-When I click on the Find/Create Patient link
-Then take me to Find/Create Patient Page with Find Patient as title
-
-When I enter Robert as Name
-And I enter random number as Age
-And I select Male as Gender
-And I click on the button Create Person
-Then take me to the Create Patient Page
-
+GivenStories: org/openmrs/stories/patient/check_if_patient_exists_no.story
 
 Given I am on the Create Patient Page
 When I enter the Clive as the family name

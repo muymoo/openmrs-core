@@ -20,11 +20,11 @@ import java.util.List;
 import org.openmrs.Steps;
 import org.openmrs.Story;
 import org.openmrs.steps.CreateEncounterTypeSteps;
-import org.openmrs.steps.LoginSteps;
+import org.openmrs.steps.LoginPageSteps;
 
 public class CreateEncounterType extends Story {
 	@Override
     public List<Steps> includeSteps() {
-        return asList(new LoginSteps(driver), new CreateEncounterTypeSteps(driver));
+        return asList(new LoginPageSteps(driver), new CreateEncounterTypeSteps(driver));
     }
 }

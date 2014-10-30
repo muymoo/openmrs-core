@@ -15,7 +15,7 @@ package org.openmrs.stories;
 
 import org.openmrs.Steps;
 import org.openmrs.Story;
-import org.openmrs.steps.LoginSteps;
+import org.openmrs.steps.LoginPageSteps;
 
 import java.util.List;
 
@@ -25,6 +25,6 @@ public class LoginToWebsite extends Story {
 
     @Override
     public List<Steps> includeSteps() {
-        return asList((Steps) new LoginSteps(driver));
+        return asList((Steps) new LoginPageSteps(driver));
     }
 }

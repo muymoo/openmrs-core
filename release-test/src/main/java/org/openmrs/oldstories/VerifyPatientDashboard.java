@@ -16,7 +16,7 @@ package org.openmrs.stories;
 import org.openmrs.Steps;
 import org.openmrs.Story;
 import org.openmrs.steps.FindPatientSteps;
-import org.openmrs.steps.LoginSteps;
+import org.openmrs.steps.LoginPageSteps;
 import org.openmrs.steps.VerifyPatientDashboardSteps;
 
 import java.util.List;
@@ -28,6 +28,6 @@ public class VerifyPatientDashboard extends Story {
 
     @Override
     public List<Steps> includeSteps() {
-        return asList(new LoginSteps(driver), new FindPatientSteps(driver), new VerifyPatientDashboardSteps(driver));
+        return asList(new LoginPageSteps(driver), new FindPatientSteps(driver), new VerifyPatientDashboardSteps(driver));
     }
 }

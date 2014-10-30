@@ -28,32 +28,10 @@ import static org.openqa.selenium.lift.Matchers.text;
 
 import static org.junit.Assert.*;
 
-public class CreatePatientSteps extends Steps {
+public class CreatePatientPageSteps extends Steps {
 
-	public CreatePatientSteps(WebDriver driver) {
+	public CreatePatientPageSteps(WebDriver driver) {
 		super(driver);
-	}
-
-	@Given("I am on the Find/Create Patient Page")
-	public void onFindCreatePatientPage() {
-		waitAndAssertFor(title().with(text(equalTo("OpenMRS - Find Patient"))));
-
-	}
-
-	@When("I enter $name as Name")
-	public void enterName(String name) {
-		type(name, into(textbox().with(attribute("id", equalTo("personName")))));
-	}
-
-	@When("I enter random number as Age")
-	public void enterAge() {
-		type(random(""), into(textbox().with(attribute("id", equalTo("age")))));
-	}
-
-	@When("I select Male as Gender")
-	public void selectGender() {
-		clickOn(radioButton().with(attribute("id", equalTo("gender-M"))));
-
 	}
 
 	@Then("take me to the Create Patient Page")

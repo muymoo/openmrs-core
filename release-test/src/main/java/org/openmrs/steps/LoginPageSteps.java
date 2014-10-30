@@ -31,9 +31,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.lift.find.Finder;
 import static org.junit.Assert.*;
 
-public class LoginSteps extends Steps {
+public class LoginPageSteps extends Steps {
 
-	public LoginSteps(WebDriver driver) {
+	public LoginPageSteps(WebDriver driver) {
 		super(driver);
 	}
 

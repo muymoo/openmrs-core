@@ -17,7 +17,7 @@ import org.openmrs.Steps;
 import org.openmrs.Story;
 import org.openmrs.steps.AdminSteps;
 import org.openmrs.steps.CreateRelationshipTypeSteps;
-import org.openmrs.steps.LoginSteps;
+import org.openmrs.steps.LoginPageSteps;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class CreateARelationshipType extends Story {
 
     @Override
     public List<Steps> includeSteps() {
-        return asList(new LoginSteps(driver), new AdminSteps(driver),
+        return asList(new LoginPageSteps(driver), new AdminSteps(driver),
 		        new CreateRelationshipTypeSteps(driver));
     }
 }

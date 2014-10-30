@@ -13,20 +13,20 @@
  */
 package org.openmrs.stories.patient;
 
-import org.openmrs.Steps;
-import org.openmrs.Story;
-import org.openmrs.steps.FindPatientSteps;
-import org.openmrs.steps.LoginSteps;
+import static java.util.Arrays.asList;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
+import org.openmrs.Steps;
+import org.openmrs.Story;
+import org.openmrs.steps.FindPatientPageSteps;
+import org.openmrs.steps.LoginPageSteps;
 
 
 public class FindAPatient extends Story {
 
     @Override
     public List<Steps> includeSteps() {
-        return asList(new LoginSteps(driver), new FindPatientSteps(driver));
+        return asList(new LoginPageSteps(driver), new FindPatientPageSteps(driver));
     }
 }

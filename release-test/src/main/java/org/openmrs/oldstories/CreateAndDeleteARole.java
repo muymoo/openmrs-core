@@ -18,7 +18,7 @@ import org.openmrs.Story;
 import org.openmrs.steps.AdminSteps;
 import org.openmrs.steps.CreateRoleSteps;
 import org.openmrs.steps.DeleteRoleSteps;
-import org.openmrs.steps.LoginSteps;
+import org.openmrs.steps.LoginPageSteps;
 
 import java.util.List;
 
@@ -27,6 +27,6 @@ import static java.util.Arrays.asList;
 public class CreateAndDeleteARole extends Story {
     @Override
     public List<Steps> includeSteps() {
-        return asList(new LoginSteps(driver), new AdminSteps(driver), new CreateRoleSteps(driver), new DeleteRoleSteps(driver));
+        return asList(new LoginPageSteps(driver), new AdminSteps(driver), new CreateRoleSteps(driver), new DeleteRoleSteps(driver));
     }
 }

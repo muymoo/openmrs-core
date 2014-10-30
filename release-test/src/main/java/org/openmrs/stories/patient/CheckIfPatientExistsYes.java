@@ -11,23 +11,25 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.stories;
-
-import org.openmrs.Steps;
-import org.openmrs.Story;
-import org.openmrs.steps.CreatePatientSteps;
-import org.openmrs.steps.FindPatientSteps;
-import org.openmrs.steps.LoginSteps;
-
-import java.util.List;
+package org.openmrs.stories.patient;
 
 import static java.util.Arrays.asList;
 
+import java.util.List;
 
-public class CreateAPatient extends Story {
+import org.openmrs.Steps;
+import org.openmrs.Story;
+import org.openmrs.steps.FindPatientPageSteps;
+import org.openmrs.steps.FoundSimilarPeoplePageSteps;
+import org.openmrs.steps.LoginPageSteps;
+
+
+public class CheckIfPatientExistsYes extends Story {
 
     @Override
     public List<Steps> includeSteps() {
-        return asList(new LoginSteps(driver), new FindPatientSteps(driver), new CreatePatientSteps(driver));
+        return asList(new LoginPageSteps(driver), 
+                new FindPatientPageSteps(driver),
+                new FoundSimilarPeoplePageSteps(driver));
     }
 }
