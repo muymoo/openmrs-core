@@ -47,41 +47,55 @@ public class LoginSteps extends Steps {
 		String port = System.getProperty("jetty.port", "8080");
 		String url = "http://localhost:" + port + "/openmrs/initialsetup";
 		goTo(url);
-
-		// the login button will only be there if the user hasn't logged in yet.
-		// this check is just in case a scenario has two dependencies and both of them 
-		// depend on the login_to_website story
-		if (! userAlreadyLoggedIn()) {
-			waitAndAssertFor(button().with(attribute("value", equalTo("Log In"))));
-		}
+		waitAndAssertFor(button().with(attribute("value", equalTo("Log In"))));
 	}
 
-	//@When("I enter $username as the username and $password as the password and click the 'Log In' button")
-	@When("I enter username and password as stored in system properties as $usernameProp and $passwordProp and click the 'Log In' button")
-	public void logIn(String usernameProp, String passwordProp) {
+	@When("I enter a $valid username")
+	public void enterUsername(String valid) {
 
-		String username = System.getProperty(usernameProp, "admin");
-		String password = System.getProperty(passwordProp, "Admin123");
-
-		// (same as above reasoning)
-		// this check is just in case a scenario has two dependencies and both of them 
-		// depend on the login_to_website story
-		if (! userAlreadyLoggedIn()) {
-			type(username, into(textbox()
-					.with(attribute("id", equalTo("username")))));
-			type(password,
-					into(passwordtextbox().with(
-							attribute("id", equalTo("password")))));
-			clickOn(button());
+		String username = "foo";
+		if(valid.equals("valid")) {
+			username = System.getProperty("openmrs_username", "admin");
 		}
+
+		type(username, into(textbox().with(attribute("id", equalTo("username")))));
+	}
+
+	@When("I enter a $valid password")
+	public void enterPassword(String valid) {
+
+		// TODO - sorry if I check this in... this is a horrible hack for Lauren
+		System.setProperty("openmrs_password", "Testtest1");
+
+		String password = "bar";
+		if(valid.equals("valid")) {
+			password = System.getProperty("openmrs_password", "Admin123");
+		}
+
+		type(password, into(passwordtextbox().with(attribute("id", equalTo("password")))));
+	}
+
+	@When("I click Log In")
+	public void clickLogIn() {
+		clickOn(button());
 	}
 
 	@Then("take me to the $title screen and display welcome message for user $user")
 	public void verifyPage(String title, String displayName) {
 		assertEquals(getTitle(), "OpenMRS - " + title);
-		//assertPresenceOf(title().with(text(equalTo("OpenMRS - " + title))));
 		assertPresenceOf(div().with(
 				text(containsString("Hello, " + displayName + ". Welcome to"))));
+	}
+
+	@Then("I am not logged in")
+	public void checkOnLoginPage() {
+		assertFalse(userAlreadyLoggedIn());
+	}
+
+	@Then("I get the incorrect username/password error message")
+	public void checkIncorrectUsernamePasswordMsg() {
+		assertPresenceOf(div().with(
+				text(containsString("Invalid username/password. Please try again."))));
 	}
 
 }

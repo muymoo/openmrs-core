@@ -101,7 +101,7 @@
 										<exclude>**/stories/AinstallationWizard.java</exclude>
 									</excludes>
 									<includes>
-										<include>**/stories/${test}.java</include>
+										<include>**/stories/**/${test}.java</include>
 									</includes>
 								</configuration>
 								<goals>
