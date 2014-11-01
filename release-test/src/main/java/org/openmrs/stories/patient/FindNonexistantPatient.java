@@ -23,7 +23,7 @@ import org.openmrs.steps.FindPatientPageSteps;
 import org.openmrs.steps.LoginPageSteps;
 
 
-public class FindAPatient extends Story {
+public class FindNonexistantPatient extends Story {
 
     @Override
     public List<Steps> includeSteps() {

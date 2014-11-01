@@ -14,6 +14,7 @@
 package org.openmrs.steps;
 
 
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -64,10 +65,20 @@ public class FindPatientPageSteps extends Steps {
     }
     
     @When("I search for the last created name")
-    public void searchLastName() {
+    public void searchLastName() throws InterruptedException {
+        Thread.sleep(1000);
         String search = CreatePatientPageSteps.lastGivenName + " " +
                 CreatePatientPageSteps.lastFamilyName;
         type(search, into(textbox().with(attribute("id", equalTo("inputNode")))));
+    }
+    
+    @When("I view that patient's dashboard")
+    @Alias("choose the patient")
+    public void viewSelectedPatient(){
+        String patientRecordXpath = "//table[@id=\'openmrsSearchTable\']/tbody/tr/td[3]";
+        waitFor(finderByXpath(patientRecordXpath));
+        clickOn(finderByXpath(patientRecordXpath));
+            
     }
     
     @Then("$first $last is returned")
