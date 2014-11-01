@@ -65,7 +65,7 @@ public class LoginPageSteps extends Steps {
 	public void enterPassword(String valid) {
 
 //		// TODO - sorry if I check this in... this is a horrible hack for Lauren
-		System.setProperty("openmrs_password", "Testtest1");
+		//System.setProperty("openmrs_password", "Testtest1");
 
 		String password = "bar";
 		if(valid.equals("valid")) {
