@@ -8,12 +8,16 @@ Then Person Name has an error
 Then Age has an error
 Then Gender has an error
 
+Scenario: create patient with invalid name
+
 Given I am on Find Patient screen
 When I type 12345 for name
 When I type 73 for age
 When I choose Male
 When I click Create Person
 Then Person Name has an invalid error
+
+Scenario: create patient with invalid age
 
 Given I am on Find Patient screen
 When I type abc for name

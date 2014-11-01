@@ -21,17 +21,19 @@ import org.openmrs.Steps;
 import org.openmrs.Story;
 import org.openmrs.steps.CreatePatientPageSteps;
 import org.openmrs.steps.DashboardPageSteps;
+import org.openmrs.steps.EditPatientPageSteps;
 import org.openmrs.steps.FindPatientPageSteps;
 import org.openmrs.steps.LoginPageSteps;
 
 
-public class EditAPatient extends Story {
+public class DeleteRestoreAPatient extends Story {
 
     @Override
     public List<Steps> includeSteps() {
         return asList(new LoginPageSteps(driver), 
                 new FindPatientPageSteps(driver), 
                 new CreatePatientPageSteps(driver),
-                new DashboardPageSteps(driver));
+                new DashboardPageSteps(driver),
+                new EditPatientPageSteps(driver));
     }
 }

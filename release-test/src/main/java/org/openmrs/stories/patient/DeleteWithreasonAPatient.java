@@ -11,27 +11,29 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.oldstories;
-
-import org.openmrs.Steps;
-import org.openmrs.Story;
-import org.openmrs.steps.AdminSteps;
-import org.openmrs.steps.EditPatientPageSteps;
-import org.openmrs.steps.LoginPageSteps;
-import org.openmrs.steps.VerifyPatientDashboardSteps;
-
-import java.util.List;
+package org.openmrs.stories.patient;
 
 import static java.util.Arrays.asList;
 
+import java.util.List;
 
-public class EditPatientAttributes extends Story {
+import org.openmrs.Steps;
+import org.openmrs.Story;
+import org.openmrs.steps.CreatePatientPageSteps;
+import org.openmrs.steps.DashboardPageSteps;
+import org.openmrs.steps.EditPatientPageSteps;
+import org.openmrs.steps.FindPatientPageSteps;
+import org.openmrs.steps.LoginPageSteps;
+
+
+public class DeleteWithreasonAPatient extends Story {
 
     @Override
     public List<Steps> includeSteps() {
-        return asList(new LoginPageSteps(driver), new AdminSteps(driver),
-                new VerifyPatientDashboardSteps(driver),
+        return asList(new LoginPageSteps(driver), 
+                new FindPatientPageSteps(driver), 
+                new CreatePatientPageSteps(driver),
+                new DashboardPageSteps(driver),
                 new EditPatientPageSteps(driver));
     }
-
 }

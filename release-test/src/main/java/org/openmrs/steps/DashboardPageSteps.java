@@ -67,6 +67,12 @@ public class DashboardPageSteps extends Steps {
         clickOn(link("Edit this Patient (Short Form)"));
     }
 	
+	@When("I edit the patient")
+    public void editPatient() throws InterruptedException {
+        clickOn(link("Demographics"));
+        clickOn(link("Edit this Patient"));
+    }
+	
 	@Then("the information should be saved")
     public void verifySavedInformation() {
         assertPresenceOf(div().with(text(equalTo("Patient saved"))));

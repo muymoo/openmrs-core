@@ -20,10 +20,7 @@ import static org.openqa.selenium.lift.Finders.radioButton;
 import static org.openqa.selenium.lift.Finders.textbox;
 import static org.openqa.selenium.lift.Matchers.attribute;
 
-import java.util.List;
 import java.util.Random;
-
-import junit.framework.Assert;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.jbehave.core.annotations.Given;
@@ -117,7 +114,8 @@ public class CreatePatientPageSteps extends Steps {
 	}
 
 	@Then("take me to Patient dashboard page with title Patient Dashboard")
-	public void verifyIfPatientIsCreated() {
+	public void verifyIfPatientIsCreated() throws InterruptedException {
+	    Thread.sleep(1000);
 		assertEquals("OpenMRS - Patient Dashboard", getTitle());
 	}
 

@@ -62,7 +62,14 @@ public class FindPatientPageSteps extends Steps {
     public void typeSearchKeyword(String search) {
         type(search, into(textbox().with(attribute("id", equalTo("inputNode")))));
     }
-
+    
+    @When("I search for the last created name")
+    public void searchLastName() {
+        String search = CreatePatientPageSteps.lastGivenName + " " +
+                CreatePatientPageSteps.lastFamilyName;
+        type(search, into(textbox().with(attribute("id", equalTo("inputNode")))));
+    }
+    
     @Then("$first $last is returned")
     public void checkValidSearchResult(String first, String last) throws InterruptedException {
         List<WebElement> rows = getRowsOfResults("#openmrsSearchTable tbody");
@@ -74,6 +81,13 @@ public class FindPatientPageSteps extends Steps {
 
         assertEquals(first, firstName);
         assertEquals(last, lastName);
+    }
+    
+    @Then("what is returned is the last created name")
+    public void lastCreatedNameReturned() throws InterruptedException {
+        String first = CreatePatientPageSteps.lastGivenName;
+        String last = CreatePatientPageSteps.lastFamilyName;
+        checkValidSearchResult(first, last);
     }
 
     @Then("no patients are returned")
