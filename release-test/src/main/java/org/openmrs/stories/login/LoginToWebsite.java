@@ -11,22 +11,20 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.oldstories;
+package org.openmrs.stories.login;
 
 import org.openmrs.Steps;
 import org.openmrs.Story;
-import org.openmrs.steps.AdminSteps;
 import org.openmrs.steps.LoginPageSteps;
 
 import java.util.List;
 
 import static java.util.Arrays.asList;
 
-public class GoToAdminPage extends Story {
-	
+public class LoginToWebsite extends Story {
+
     @Override
     public List<Steps> includeSteps() {
-        return asList(new LoginPageSteps(driver), new AdminSteps(driver));
+        return asList((Steps) new LoginPageSteps(driver));
     }
-
 }

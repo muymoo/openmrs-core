@@ -38,7 +38,9 @@ public class LoginPageSteps extends Steps {
 	}
 
 	private boolean userAlreadyLoggedIn() {
-		Finder<WebElement, WebDriver> f = finderByXpath("//span[@id='userLoggedInAs']").with(text(containsString("Currently logged in")));
+		Finder<WebElement, WebDriver> f = finderByXpath(
+				"//span[@id='userLoggedInAs']").with(
+				text(containsString("Currently logged in")));
 		return f.findFrom(getWebDriver()).size() > 0;
 	}
 
@@ -54,11 +56,12 @@ public class LoginPageSteps extends Steps {
 	public void enterUsername(String valid) {
 
 		String username = "foo";
-		if(valid.equals("valid")) {
+		if (valid.equals("valid")) {
 			username = System.getProperty("openmrs_username", "admin");
 		}
 
-		type(username, into(textbox().with(attribute("id", equalTo("username")))));
+		type(username, into(textbox()
+				.with(attribute("id", equalTo("username")))));
 	}
 
 	@When("I enter a $valid password")
@@ -68,11 +71,13 @@ public class LoginPageSteps extends Steps {
 		//System.setProperty("openmrs_password", "Testtest1");
 
 		String password = "bar";
-		if(valid.equals("valid")) {
+		if (valid.equals("valid")) {
 			password = System.getProperty("openmrs_password", "Admin123");
 		}
 
-		type(password, into(passwordtextbox().with(attribute("id", equalTo("password")))));
+		type(password,
+				into(passwordtextbox().with(
+						attribute("id", equalTo("password")))));
 	}
 
 	@When("I click Log In")
@@ -94,8 +99,27 @@ public class LoginPageSteps extends Steps {
 
 	@Then("I get the incorrect username/password error message")
 	public void checkIncorrectUsernamePasswordMsg() {
-		assertPresenceOf(div().with(
-				text(containsString("Invalid username/password. Please try again."))));
+		assertPresenceOf(div()
+				.with(text(containsString("Invalid username/password. Please try again."))));
+	}
+
+	@When("I enter username and password as stored in system properties as $usernameProp and $passwordProp and click the 'Log In' button")
+	public void logIn(String usernameProp, String passwordProp) {
+
+		String username = System.getProperty(usernameProp, "admin");
+		String password = System.getProperty(passwordProp, "Admin123");
+
+		// (same as above reasoning)
+		// this check is just in case a scenario has two dependencies and both
+		// of them depend on the login_to_website story
+		if (!userAlreadyLoggedIn()) {
+			type(username,
+					into(textbox().with(attribute("id", equalTo("username")))));
+			type(password,
+					into(passwordtextbox().with(
+							attribute("id", equalTo("password")))));
+			clickOn(button());
+		}
 	}
 
 }
