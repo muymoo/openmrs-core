@@ -34,7 +34,6 @@ public class EditPatientDemographicShortFormSteps extends Steps {
 	public void editPatientInShortForm() throws InterruptedException {
 		clickOn(link("Demographics"));
 		clickOn(link("Edit this Patient (Short Form)"));
-
 	}
 
 	@When("I mention Address, Address2, City as $address, $address2, $city")

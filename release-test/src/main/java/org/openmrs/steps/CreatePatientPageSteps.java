@@ -13,23 +13,33 @@
  */
 package org.openmrs.steps;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
+import static org.openqa.selenium.lift.Finders.button;
+import static org.openqa.selenium.lift.Finders.radioButton;
+import static org.openqa.selenium.lift.Finders.textbox;
+import static org.openqa.selenium.lift.Matchers.attribute;
+
+import java.util.List;
+import java.util.Random;
+
+import junit.framework.Assert;
+
+import org.apache.commons.lang3.RandomStringUtils;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.openmrs.Steps;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import java.util.Random;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.openqa.selenium.lift.Finders.*;
-import static org.openqa.selenium.lift.Matchers.attribute;
-import static org.openqa.selenium.lift.Matchers.text;
-
-import static org.junit.Assert.*;
+import org.openqa.selenium.WebElement;
 
 public class CreatePatientPageSteps extends Steps {
 
+    public static String lastGivenName;
+    public static String lastFamilyName;
+    public static String lastId;
+    
 	public CreatePatientPageSteps(WebDriver driver) {
 		super(driver);
 	}
@@ -43,18 +53,26 @@ public class CreatePatientPageSteps extends Steps {
 	public void givenIamOnCreatePatientPage() {
 		assertPresenceOf(button("Save"));
 	}
-
-	@When("I enter the $familyName as the family name")
-	public void enterFamilyName(String familyName) {
-		type(familyName,
+	
+	@When("I enter a random name as the name")
+	public void enterName() {
+	    String givenName = RandomStringUtils.randomAlphabetic(10);
+	    String familyName = RandomStringUtils.randomAlphabetic(10);
+	    lastGivenName = givenName;
+	    lastFamilyName = familyName;
+		type(lastGivenName,
 				into(textbox().with(
-						attribute("name", equalTo("personName.familyName")))));
+						attribute("name", equalTo("personName.givenName")))));
+		type(lastFamilyName,
+		        into(textbox().with(
+		                attribute("name", equalTo("personName.familyName")))));
 	}
 
 	@When("I enter $code as Identifier Code")
 	public void enterIdentifierCode(String code) {
 		Random randomGenerator = new Random();
 		int randomInt = randomGenerator.nextInt(100);
+		lastId = Integer.toString(randomInt);
 		type(code + Integer.toString(randomInt),
 				finderByXpath("//form[@id=\'patientModel\']//table[@id=\'identifiers\']//tr[@id=\'existingIdentifiersRow[0]\']/td[1]/input"));
 	}
@@ -90,6 +108,12 @@ public class CreatePatientPageSteps extends Steps {
 		type(country,
 				into(textbox().with(
 						attribute("name", equalTo("personAddress.country")))));
+	}
+	
+	@When("I click back")
+	public void clickBack() throws InterruptedException {
+        WebElement backButton = driver.findElement(By.cssSelector("input[value=\"Back\"]"));
+        backButton.click();
 	}
 
 	@Then("take me to Patient dashboard page with title Patient Dashboard")

@@ -25,7 +25,7 @@ import org.openmrs.steps.FindPatientPageSteps;
 import org.openmrs.steps.LoginPageSteps;
 
 
-public class CreateAPatient extends Story {
+public class EditAPatient extends Story {
 
     @Override
     public List<Steps> includeSteps() {
