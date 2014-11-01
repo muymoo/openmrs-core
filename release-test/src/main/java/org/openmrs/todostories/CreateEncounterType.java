@@ -11,7 +11,7 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.stories;
+package org.openmrs.todostories;
 
 import static java.util.Arrays.asList;
 

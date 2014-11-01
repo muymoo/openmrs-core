@@ -11,11 +11,11 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.stories;
+package org.openmrs.oldstories;
 
 import org.openmrs.Steps;
 import org.openmrs.Story;
-import org.openmrs.steps.FindPatientSteps;
+import org.openmrs.steps.FindPatientPageSteps;
 import org.openmrs.steps.LoginPageSteps;
 import org.openmrs.steps.VerifyPatientDashboardSteps;
 
@@ -28,6 +28,6 @@ public class VerifyPatientDashboard extends Story {
 
     @Override
     public List<Steps> includeSteps() {
-        return asList(new LoginPageSteps(driver), new FindPatientSteps(driver), new VerifyPatientDashboardSteps(driver));
+        return asList(new LoginPageSteps(driver), new FindPatientPageSteps(driver), new VerifyPatientDashboardSteps(driver));
     }
 }

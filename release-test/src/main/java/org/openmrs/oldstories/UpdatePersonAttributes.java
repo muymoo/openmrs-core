@@ -1,4 +1,4 @@
-package org.openmrs.stories;
+package org.openmrs.oldstories;
 
 import org.openmrs.Steps;
 import org.openmrs.Story;
