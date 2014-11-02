@@ -65,14 +65,13 @@ public class CreatePatientPageSteps extends Steps {
 		                attribute("name", equalTo("personName.familyName")))));
 	}
 
-	@When("I enter $code as Identifier Code")
-	public void enterIdentifierCode(String code) {
-		Random randomGenerator = new Random();
-		int randomInt = randomGenerator.nextInt(100);
-		lastId = Integer.toString(randomInt);
-		type(code + Integer.toString(randomInt),
-				finderByXpath("//form[@id=\'patientModel\']//table[@id=\'identifiers\']//tr[@id=\'existingIdentifiersRow[0]\']/td[1]/input"));
-	}
+	@When("I enter a random code as Identifier Code")
+    public void enterIdentifierCode() {
+	    String randomInt = RandomStringUtils.randomNumeric(10);
+        lastId = randomInt;
+        type(randomInt,
+                finderByXpath("//form[@id=\'patientModel\']//table[@id=\'identifiers\']//tr[@id=\'existingIdentifiersRow[0]\']/td[1]/input"));
+    }
 
 	@When("I select Old Identification Number as Identifier Type with index $id")
 	public void enterIdentifierType(int id) {
@@ -115,7 +114,7 @@ public class CreatePatientPageSteps extends Steps {
 
 	@Then("take me to Patient dashboard page with title Patient Dashboard")
 	public void verifyIfPatientIsCreated() throws InterruptedException {
-	    Thread.sleep(1000);
+	    Thread.sleep(2000);
 		assertEquals("OpenMRS - Patient Dashboard", getTitle());
 	}
 
