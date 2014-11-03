@@ -80,7 +80,7 @@ public class LoginPageSteps extends Steps {
 						attribute("id", equalTo("password")))));
 	}
 
-	@When("I click Log In")
+	@When("I click the login button")
 	public void clickLogIn() {
 		clickOn(button());
 	}

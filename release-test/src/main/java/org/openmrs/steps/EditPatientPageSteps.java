@@ -90,13 +90,8 @@ public class EditPatientPageSteps extends Steps {
 	public void restorePatient() {
         WebElement btn = driver.findElement(By.cssSelector("input[value=\"Restore Patient\"]"));
         btn.click();
-	}
+	}	
 	
-//	@When("I click on Manage Patients")
-//	public void openManagePatient() {
-//		clickOn(link().with(text(equalTo("Manage Patients"))));
-//	}
-//
 	@When("enter birthplace, citizenship, health district and race as $birthPlace, $citizenship, $district and $race respectively")
 	public void editAttributes(String birthPlace, String citizenship,
 			String district, String race) {
