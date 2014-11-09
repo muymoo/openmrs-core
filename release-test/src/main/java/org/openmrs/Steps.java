@@ -17,6 +17,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.When;
+import org.jbehave.core.annotations.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,6 +30,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.*;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.lift.Finders.button;
 import static org.openqa.selenium.lift.Finders.link;
 import static org.openqa.selenium.lift.Matchers.attribute;
@@ -243,5 +245,9 @@ public abstract class Steps {
 	public void save(String buttonName) {
 		waitAndClickOn(button(buttonName));
 	}
-
+    
+    @Then("take me to $title page")
+    public void takeMeToSpecifiedPage(String title) {
+    	assertEquals(title, getTitle());
+	}
 }

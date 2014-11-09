@@ -11,27 +11,22 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.steps;
+package org.openmrs.stories;
 
-import org.jbehave.core.annotations.Given;
 import org.openmrs.Steps;
-import org.openqa.selenium.WebDriver;
+import org.openmrs.Story;
+import org.openmrs.steps.AdminSteps;
+import org.openmrs.steps.LoginPageSteps;
+import org.openmrs.steps.ViewServerLogSteps;
 
-import static org.junit.Assert.*;
+import java.util.List;
 
-public class AdminSteps extends Steps {
+import static java.util.Arrays.asList;
 
-	public AdminSteps(WebDriver driver) {
-		super(driver);
-	}
-	
-	@Given("I am on $title page")
-	public void onAdminPage(String title) {
-		assertEquals(title, getTitle());
-	}
+public class ViewServerLog extends Story {
 
-	@Given("I am on $title screen")
-	public void onHomePage(String title) {
-		assertEquals("OpenMRS - " + title, getTitle());
-	}
+    @Override
+    public List<Steps> includeSteps() {
+        return asList(new LoginPageSteps(driver), new AdminSteps(driver), new ViewServerLogSteps(driver));
+    }
 }

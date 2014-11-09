@@ -17,27 +17,16 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.openqa.selenium.lift.Finders.div;
 import static org.openqa.selenium.lift.Finders.link;
-import static org.openqa.selenium.lift.Finders.title;
 import static org.openqa.selenium.lift.Matchers.text;
 
-import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.openmrs.Steps;
 import org.openqa.selenium.WebDriver;
 
-import static org.junit.Assert.*;
-
 public class ViewServerLogSteps extends Steps {
 	public ViewServerLogSteps(WebDriver driver) {
 		super(driver);
-	}
-
-	@Given("I am on Admin page")
-	public void iAmOnAdminPage() {
-		assertEquals("Administration", getTitle());
-		//assertPresenceOf(title().with(
-		//		text(equalTo("OpenMRS - " + "Administration"))));
 	}
 
 	@When("I click on View Server Log")
