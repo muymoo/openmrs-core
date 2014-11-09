@@ -40,12 +40,9 @@ public class RetireUnretireConceptDrugSteps extends Steps {
 		clickOn(link().with(text(equalTo("Administration"))));
 	}
 
-
-
-	@When("I edit a concept drug")
-	public void navigateToEditConceptDrugUrl() {
-        waitAndClickOn(link().with(text(equalTo("d4T-30"))));
-
+	@When("I edit the concept drug $drugName")
+	public void editTheConceptDrugDrugName(String drugName) {
+        waitAndClickOn(link().with(text(equalTo(drugName))));
 	}
 
 	@When("I provide a retire reason such as $retireReason")
