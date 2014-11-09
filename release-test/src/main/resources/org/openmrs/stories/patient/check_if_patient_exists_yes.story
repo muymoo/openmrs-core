@@ -9,4 +9,4 @@ When I choose Male
 When I click Create Person
 Then I am taken to person screen
 Then I see the title Found Similar People
-Then I see patient 101-6 as a similar patient
+Then I see another similar patient listed as Horatio Hornblower

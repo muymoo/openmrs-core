@@ -13,28 +13,15 @@
  */
 package org.openmrs.steps;
 
-
-import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
 import org.openmrs.Steps;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.contains;
-import static org.openqa.selenium.lift.Finders.div;
-import static org.openqa.selenium.lift.Finders.link;
-import static org.openqa.selenium.lift.Finders.title;
-import static org.openqa.selenium.lift.Finders.button;
-import static org.openqa.selenium.lift.Finders.textbox;
-import static org.openqa.selenium.lift.Matchers.text;
-import static org.openqa.selenium.lift.Matchers.attribute;
+import junit.framework.Assert;
 import static org.junit.Assert.*;
 
 public class FoundSimilarPeoplePageSteps extends Steps {
@@ -43,24 +30,30 @@ public class FoundSimilarPeoplePageSteps extends Steps {
     }
     
     @Then("I am taken to $title screen")
-    public void takenTo(String title) {
+    public void takenToTitleScreen(String title) {
         assertEquals(getTitle(), "OpenMRS - " + title);
     }
     
     @Then("I see the title Found Similar People")
-    public void title() {
+    public void seeTheTitleFoundSimilarPeople() {
         assertEquals("Found Similar People", driver.findElement(By.tagName("h2")).getText());
     }
     
-    @Then("I see patient 101-6 as a similar patient")
-    public void patient() throws InterruptedException {
+    @Then("I see another similar patient listed as $firstName $lastName")
+    public void seeAnotherSimilarPatientListedAsSimilarPatient(String firstName, String lastName) throws InterruptedException {
         List<WebElement> rows = getRowsOfResults(".openmrsSearchTable tbody");
-        assertEquals(rows.size(), 1);
+        Assert.assertTrue(rows.size() >= 1);
 
+        // From the first row returned, get all the column-values in that row
         List<WebElement> cells = rows.get(0).findElements(By.tagName("td"));
-        String id = cells.get(1).getText();
+        
+        // Person's Given name
+        String givenName = cells.get(2).getText();
+        
+        // Person's Family Name
+        String familyName = cells.get(4).getText();
 
-        assertEquals(id, "101-6");
+        assertEquals(firstName + " " + lastName, givenName + " " + familyName);
     }
     
 }
