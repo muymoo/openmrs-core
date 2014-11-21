@@ -104,9 +104,4 @@ public class VisitSteps extends Steps {
 		Thread.sleep(1000);
         assertEquals(heading, getTitle());
 	}
-	
-	@Then("display message $message")
-    public void verifyDisplayedMessage(String message) {
-        waitAndAssertFor(div().with(text(containsString(message))));
-    }
 }

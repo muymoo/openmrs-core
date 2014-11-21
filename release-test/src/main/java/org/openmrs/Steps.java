@@ -38,6 +38,9 @@ import static org.openqa.selenium.lift.Matchers.text;
 import static org.openqa.selenium.lift.match.NumericalMatchers.exactly;
 import static org.openqa.selenium.lift.match.SelectionMatcher.selection;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.openqa.selenium.lift.Finders.div;
+
 public abstract class Steps {
 
 	private static final long DEFAULT_TIMEOUT = 8000;
@@ -247,7 +250,13 @@ public abstract class Steps {
 	}
     
     @Then("take me to $title page")
-    public void takeMeToSpecifiedPage(String title) {
+    public void takeMeToSpecifiedPage(String title) throws InterruptedException {
+    	Thread.sleep(1000);
     	assertEquals(title, getTitle());
+	}
+    
+	@Then("display message $message")
+	public void verifyDisplayedMessage(String message) {
+	      waitAndAssertFor(div().with(text(containsString(message))));
 	}
 }
