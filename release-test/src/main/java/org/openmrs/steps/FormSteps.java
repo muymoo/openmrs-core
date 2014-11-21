@@ -65,10 +65,4 @@ public class FormSteps extends Steps {
 	public void makeTheFormPublished() {
 		getWebDriver().findElement(By.name("published")).click();
 	}
-	
-	@Then("take me to $title as heading")
-	public void takeMeToHeading(String heading) throws InterruptedException	{
-		Thread.sleep(1000);
-        assertEquals(heading, getTitle());
-	}
 }

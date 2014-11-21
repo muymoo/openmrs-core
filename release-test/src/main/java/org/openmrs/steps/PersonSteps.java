@@ -75,10 +75,4 @@ public class PersonSteps extends Steps {
 	public void clickOnCreatePersonButton(String createPersonLabel) {
 		clickOn(button(createPersonLabel));
 	}
-	
-	@Then("take me to $title as heading")
-	public void takeMeToHeading(String heading) throws InterruptedException	{
-		Thread.sleep(1000);
-        assertEquals(heading, getTitle());
-	}
 }

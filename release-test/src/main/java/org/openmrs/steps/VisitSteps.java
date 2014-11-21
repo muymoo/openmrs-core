@@ -98,10 +98,4 @@ public class VisitSteps extends Steps {
 	            option.click();
 	    }
 	}
-	
-	@Then("take me to $title as heading")
-	public void takeMeToHeading(String heading) throws InterruptedException	{
-		Thread.sleep(1000);
-        assertEquals(heading, getTitle());
-	}
 }

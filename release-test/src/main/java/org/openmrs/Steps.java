@@ -259,4 +259,10 @@ public abstract class Steps {
 	public void verifyDisplayedMessage(String message) {
 	      waitAndAssertFor(div().with(text(containsString(message))));
 	}
+	
+	@Then("take me to $title as heading")
+	public void takeMeToHeading(String heading) throws InterruptedException	{
+		Thread.sleep(1000);
+        assertEquals(heading, getTitle());
+	}
 }

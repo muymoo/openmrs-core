@@ -56,12 +56,6 @@ public class MaintenanceSteps extends Steps {
 		Assert.assertEquals(true, foundUser);
 	}
 
-	@Then("take me to $title as heading")
-	public void takeMeToHeading(String heading) throws InterruptedException {
-		Thread.sleep(1000);
-		assertEquals(heading, getTitle());
-	}
-
 	private List<String> toUsers(ExamplesTable table) {
 		List<String> users = new ArrayList();
 		for (Map<String, String> row : table.getRows()) {
