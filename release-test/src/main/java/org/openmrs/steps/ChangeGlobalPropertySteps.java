@@ -13,8 +13,23 @@
  */
 package org.openmrs.steps;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
+import static org.openqa.selenium.lift.Finders.button;
+import static org.openqa.selenium.lift.Finders.div;
+import static org.openqa.selenium.lift.Finders.link;
+import static org.openqa.selenium.lift.Finders.textbox;
+import static org.openqa.selenium.lift.Finders.title;
+import static org.openqa.selenium.lift.Matchers.text;
+import static org.openqa.selenium.lift.match.AttributeMatcher.attribute;
+
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.openmrs.Steps;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.lift.find.HtmlTagFinder;
+
 
 public class ChangeGlobalPropertySteps extends ViewGlobalPropertySteps {
     public ChangeGlobalPropertySteps(WebDriver driver) {
@@ -30,5 +45,15 @@ public class ChangeGlobalPropertySteps extends ViewGlobalPropertySteps {
     @When("I type $value as value")
 	public void enterGlobalPropertyValue(String value) {
 		type(random(value), into(finderByXpath("//tbody[@id='globalPropsList']/tr[count(//tbody[@id='globalPropsList']/tr) - 5]/td[2]/input")));
+	}
+    
+    @When("I click on $save button")
+	public void clickOnSave(String save) {
+		clickOn(button(save));
+	}
+    
+    @Then("display message $successMessage")
+	public void verifySuccessMessage(String successMessage) {
+		waitAndAssertFor(div().with(text(containsString(successMessage))));
 	}
 }
